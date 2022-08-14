@@ -26,7 +26,7 @@ app.get("/ping", (req, res) => {
 app.use(routes);
 
 // create a server
-const PORT = 8080
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀🚀 Server running on port ${PORT  }`)
 })
