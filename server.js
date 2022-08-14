@@ -1,6 +1,8 @@
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
+const routes = require('./routes')
+
 // Initialize express
 const app = express()
 // Set DB
@@ -10,6 +12,7 @@ const db = require('./db')
 app.use(express.json()); 
 app.use(morgan("dev")); 
 app.use(cors());
+app.use(express.urlencoded({extended: true}));
 
 //endpoint
 app.get("/ping", (req, res) => {  
@@ -17,6 +20,8 @@ app.get("/ping", (req, res) => {
       status: "Healthy",
     });
 });
+
+app.use(routes);
 
 // create a server
 const PORT = 8080
